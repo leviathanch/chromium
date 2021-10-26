@@ -4,7 +4,10 @@
 
 #include "device/vr/openxr/openxr_controller.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "base/check.h"
 #include "base/cxx17_backports.h"
@@ -185,11 +188,11 @@ XrResult OpenXrController::Initialize(
   XrActionSetCreateInfo action_set_create_info = {
       XR_TYPE_ACTION_SET_CREATE_INFO};
 
-  errno_t error = strcpy_s(action_set_create_info.actionSetName,
+  error_t error = strcpy(action_set_create_info.actionSetName,
                            base::size(action_set_create_info.actionSetName),
                            action_set_name.c_str());
   DCHECK(!error);
-  error = strcpy_s(action_set_create_info.localizedActionSetName,
+  error = strcpy(action_set_create_info.localizedActionSetName,
                    base::size(action_set_create_info.localizedActionSetName),
                    action_set_name.c_str());
   DCHECK(!error);
@@ -616,11 +619,11 @@ XrResult OpenXrController::CreateAction(XrActionType type,
   XrActionCreateInfo action_create_info = {XR_TYPE_ACTION_CREATE_INFO};
   action_create_info.actionType = type;
 
-  errno_t error =
-      strcpy_s(action_create_info.actionName,
+  error_t error =
+      strcpy(action_create_info.actionName,
                base::size(action_create_info.actionName), action_name.data());
   DCHECK(error == 0);
-  error = strcpy_s(action_create_info.localizedActionName,
+  error = strcpy(action_create_info.localizedActionName,
                    base::size(action_create_info.localizedActionName),
                    action_name.data());
   DCHECK(error == 0);
