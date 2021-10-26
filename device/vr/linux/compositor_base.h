@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef DEVICE_VR_WINDOWS_COMPOSITOR_BASE_H_
-#define DEVICE_VR_WINDOWS_COMPOSITOR_BASE_H_
+#ifndef DEVICE_VR_LINUX_COMPOSITOR_BASE_H_
+#define DEVICE_VR_LINUX_COMPOSITOR_BASE_H_
 
 #include "base/memory/scoped_refptr.h"
 #include "base/threading/thread.h"
@@ -22,8 +22,6 @@
 #include "mojo/public/cpp/bindings/remote.h"
 #include "mojo/public/cpp/platform/platform_handle.h"
 #include "ui/gfx/geometry/rect_f.h"
-
-#include "device/vr/windows/d3d11_texture_helper.h"
 
 namespace device {
 
@@ -91,7 +89,6 @@ class XRCompositorCommon : public base::Thread,
   void SetVisibilityState(mojom::XRVisibilityState visibility_state);
   const mojom::VRStageParametersPtr& GetCurrentStageParameters() const;
   void SetStageParameters(mojom::VRStageParametersPtr stage_parameters);
-  D3D11TextureHelper texture_helper_;
   int16_t next_frame_id_ = 0;
 
   // Allow derived classes to call methods on the main thread.
@@ -217,4 +214,4 @@ class XRCompositorCommon : public base::Thread,
 
 }  // namespace device
 
-#endif  // DEVICE_VR_WINDOWS_COMPOSITOR_BASE_H_
+#endif  // DEVICE_VR_LINUX_COMPOSITOR_BASE_H_
